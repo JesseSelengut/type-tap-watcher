@@ -68,3 +68,20 @@ Three constants at the top of the script tune the feel:
 ## License
 
 MIT — see LICENSE.
+
+## Known limitations
+
+While an app that enables macOS **Secure Keyboard Entry** (Secure Event
+Input) is active, the watcher stops responding to typing. macOS suppresses
+key events from every event tap while secure input is held — an
+anti-keylogger protection — so the listener receives modifier keys but no
+character keys, and tap-to-click is never toggled. **1Password** is the most
+common example.
+
+This can't be worked around in code; it's a deliberate OS security boundary.
+To check whether something is currently holding secure input:
+
+    ioreg -l | grep kCGSSessionSecureInputPID
+
+`0` means nothing is holding it; any other number is the PID of the app that
+is — name it with `ps -p <pid> -o comm=`.
