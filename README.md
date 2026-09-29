@@ -16,7 +16,7 @@ aren't symmetrical events:
   seconds of silence.
 
 Because it watches the raw key stream (not just which app is frontmost), it
-requires macOS Input Monitoring permission. Taps are toggled via
+requires macOS Accessibility permission. Taps are toggled via
 `defaults write com.apple.AppleMultitouchTrackpad Clicking` plus a settings
 refresh, and tap-to-click is always restored on exit (SIGTERM/SIGINT).
 
@@ -31,8 +31,8 @@ Three constants at the top of the script tune the feel:
 - macOS
 - Python 3
 - pynput:  pip3 install --break-system-packages pynput
-- Input Monitoring permission for the Python interpreter
-  (System Settings > Privacy & Security > Input Monitoring)
+- Accessibility permission for the Python interpreter
+  (System Settings > Privacy & Security > Accessibility)
 
 ## Install
 
@@ -56,9 +56,9 @@ Three constants at the top of the script tune the feel:
        cp com.example.typetapwatcher.plist ~/Library/LaunchAgents/
        launchctl load ~/Library/LaunchAgents/com.example.typetapwatcher.plist
 
-4. Grant the interpreter Input Monitoring when prompted. If no prompt appears
+4. Grant the interpreter Accessibility when prompted. If no prompt appears
    (common under launchd), add it manually in System Settings > Privacy &
-   Security > Input Monitoring, then unload and load once more.
+   Security > Accessibility, then unload and load once more.
 
 ## Uninstall
 
